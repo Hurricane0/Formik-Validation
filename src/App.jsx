@@ -23,15 +23,26 @@ export default function App() {
                 <Formik
                     initialValues={{ name: "", email: "" }}
                     validationSchema={validationSchema}
+                    onSubmit={(values, { setSubmitting, resetForm }) => {
+                        setSubmitting(true);
+                        //...some side effects (server post requests)
+                        setTimeout(() => {
+                            alert(JSON.stringify(values, null, 2));
+                            resetForm();
+                            setSubmitting(false);
+                        }, 1000);
+                    }}
                 >
                     {({
                         values,
                         errors,
                         touched,
                         handleChange,
-                        handleBlur
+                        handleBlur,
+                        handleSubmit,
+                        isSubmitting
                     }) => (
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <label htmlFor="name">Name</label>
                                 <input
@@ -70,7 +81,11 @@ export default function App() {
                                 />
                             </div>
 
-                            <button type="submit" className="btn btn-primary">
+                            <button
+                                disabled={isSubmitting}
+                                type="submit"
+                                className="btn btn-primary"
+                            >
                                 Submit
                             </button>
                         </form>

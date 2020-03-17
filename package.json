@@ -1,11 +1,8 @@
 {
-  "name": "react",
+  "name": "formik-validation",
   "version": "1.0.0",
-  "description": "React example starter project",
-  "keywords": [
-    "react",
-    "starter"
-  ],
+  "description": "",
+  "keywords": [],
   "main": "src/index.js",
   "dependencies": {
     "classnames": "2.2.6",
